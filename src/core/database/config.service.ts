@@ -26,7 +26,7 @@ class ConfigService {
       password: this.getValue('DATABASE_PASSWORD'),
       database: this.getValue('DATABASE_DATABASE'),
       entities: ['dist/**/*.entity.js'],
-      synchronize: true,
+      synchronize: false,
       extra: {
         trustServerCertificate: true,
         ssl: true,
