@@ -10,7 +10,6 @@ import { ConvertMoneda } from 'src/common/convertMoneda';
 import { CompanyModel } from '../company/domain/models/company.model';
 const PDFDocument = require('pdfkit');
 var { Base64Encode } = require('base64-stream');
-//import { Base64Encode } from 'base64-stream';
 @Injectable()
 export class ReportsService {
   constructor(
