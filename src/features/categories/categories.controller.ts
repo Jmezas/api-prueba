@@ -33,7 +33,7 @@ export class CategoriesController {
     return this.categoriesService.findAll();
   }
 
-  @Get('fullpage/:page/:limit/ ')
+  @Get('fullpage/:page/:limit/')
   fullpage(
     @Query(new MatchQueryPipe([])) query,
     @Param('page') page: number,
