@@ -29,10 +29,10 @@ export class AuthInfrastructure implements AuthRepository {
   async login(auth: AuthModel): Promise<Result<TokensModel>> {
     const user = await this.UserRepository.findOne({
       where: { email: auth.email },
-      relations: ['roles', 'warehouses'],
+      relations: ['roles'],
     });
     if (user) {
-      const isPasswordValid = await PasswordService.compare(
+      const isPasswordValid = await PasswordService.compareArgon(
         auth.password,
         user.password,
       );
