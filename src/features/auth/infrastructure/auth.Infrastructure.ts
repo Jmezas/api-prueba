@@ -34,7 +34,7 @@ export class AuthInfrastructure implements AuthRepository {
       relations: ['roles', 'warehouses'],
     });
     if (user) {
-      const isPasswordValid = await PasswordService.compare(
+      const isPasswordValid = await PasswordService.compareArgon(
         auth.password,
         user.password,
       );
