@@ -3,13 +3,14 @@ import { CompanyApplication } from '../company/application/company.application';
 import { SaleApplication } from '../sales/application/sale.application';
 import { SaleModel } from '../sales/domain/models/sale.model';
 
-// import * as qrcode from 'qrcode';
-// import { converBase64ToImage } from 'convert-base64-to-image';
+import * as qrcode from 'qrcode';
+import { converBase64ToImage } from 'convert-base64-to-image';
 import { enletras } from 'src/common/NumLetras';
 import { ConvertMoneda } from 'src/common/convertMoneda';
 import { CompanyModel } from '../company/domain/models/company.model';
 const PDFDocument = require('pdfkit');
 var { Base64Encode } = require('base64-stream');
+//import { Base64Encode } from 'base64-stream';
 @Injectable()
 export class ReportsService {
   constructor(
@@ -26,8 +27,8 @@ export class ReportsService {
       const company = await this.ApplicationCompany.findByOne({ id: 1 }, []); //1 por defecto!
       const invoice = sale.payload.data as SaleModel; // SaleModel
       const emp = company.payload.data;
-      // const dorq = await qrcode.toDataURL('https://www.google.com/');
-      // const path = converBase64ToImage(dorq, './image.png');
+      const dorq = await qrcode.toDataURL('https://www.google.com/');
+      const path = converBase64ToImage(dorq, './image.png');
 
       //create a document pdf
       let doc = new PDFDocument({ margin: 20, size: 'A4' });
@@ -68,8 +69,8 @@ export class ReportsService {
       const company = await this.ApplicationCompany.findByOne({ id: 1 }, []); //1 por defecto!
       const invoice = sale.payload.data as SaleModel; // SaleModel
       const emp = company.payload.data as CompanyModel;
-      // const dorq = await qrcode.toDataURL('https://www.google.com/');
-      // const path = converBase64ToImage(dorq, './image.png');
+      const dorq = await qrcode.toDataURL('https://www.google.com/');
+      const path = converBase64ToImage(dorq, './image.png');
 
       //create a document pdf
       let doc = new PDFDocument({
