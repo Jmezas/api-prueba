@@ -11,6 +11,7 @@ import { Trace } from 'src/features/shared/helpers/trace.helper';
 import { UserEntity } from 'src/features/users/domain/models/user.entity';
 import { PasswordService } from 'src/features/users/domain/services/password.service';
 import { TokensService } from 'src/features/users/domain/services/tokens.service';
+import { WarehouseEntity } from 'src/features/warehouse/domain/models/warehouse.entity';
 import { In, Repository } from 'typeorm';
 import { AuthModel, MenuModel } from '../domain/models/auth.model';
 import { TokensModel } from '../domain/models/tokens.model';
@@ -23,16 +24,17 @@ export class AuthInfrastructure implements AuthRepository {
     private readonly UserRepository: Repository<UserEntity>,
     @InjectRepository(RoleEntity)
     private readonly RoleEntitypository: Repository<RoleEntity>,
-
+    @InjectRepository(WarehouseEntity)
+    private readonly WarehouseEntitypository: Repository<WarehouseEntity>,
     private readonly jwtService: JwtService,
   ) {}
   async login(auth: AuthModel): Promise<Result<TokensModel>> {
     const user = await this.UserRepository.findOne({
       where: { email: auth.email },
-      relations: ['roles'],
+      relations: ['roles', 'warehouses'],
     });
     if (user) {
-      const isPasswordValid = await PasswordService.compareArgon(
+      const isPasswordValid = await PasswordService.compare(
         auth.password,
         user.password,
       );
@@ -42,6 +44,7 @@ export class AuthInfrastructure implements AuthRepository {
           email: user.email,
           name: user.name,
           roles: user.roles.map((role) => role.name),
+          warehouses: user.warehouses.map((warehouse) => warehouse.id),
         });
 
         return ResponseDto(Trace.TraceId(), {

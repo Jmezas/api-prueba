@@ -1,4 +1,5 @@
 import { RoleEntity } from 'src/features/roles/domain/models/role.entity';
+import { WarehouseEntity } from 'src/features/warehouse/domain/models/warehouse.entity';
 
 export class UserModel {
   constructor(
@@ -12,7 +13,7 @@ export class UserModel {
     public phone: string,
     public image: string,
     public roles: number[] | string[] | RoleEntity[],
-    public warehouses: number[] | string[],
+    public warehouses: number[] | string[] | WarehouseEntity[],
     public createdAt: Date,
     public updatedAt: Date | null,
     public deletedAt: Date | null,

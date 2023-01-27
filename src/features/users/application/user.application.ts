@@ -1,10 +1,11 @@
 import { Inject, Injectable } from '@nestjs/common';
 import Result from 'src/features/shared/application/interfaces/result.interface';
-import { BaseApplication } from '../../../features/shared/application/interfaces/base-application';
 import { UserModel } from '../domain/models/user.model';
 import { UserRepository } from '../domain/repositories/user.repository';
 import { UserDTO } from './dto/dto';
-import { RoleRepository } from '../../roles/domain/repositories/rolo.repository';
+import { WarehouseRepository } from 'src/features/warehouse/domain/repositories/warehouse.repository';
+import { BaseApplication } from 'src/features/shared/application/interfaces/base-application';
+import { RoleRepository } from 'src/features/roles/domain/repositories/rolo.repository';
 
 @Injectable()
 export class UserApplication extends BaseApplication<UserModel> {
@@ -13,7 +14,10 @@ export class UserApplication extends BaseApplication<UserModel> {
     private UserRepository: UserRepository,
 
     @Inject('RoleRepository')
-    private RoleRepository: RoleRepository, // @Inject('WarehouseRepository') // private WarehouseRepository: WarehouseRepository,
+    private RoleRepository: RoleRepository,
+
+    @Inject('WarehouseRepository')
+    private WarehouseRepository: WarehouseRepository,
   ) {
     super(UserRepository, new UserDTO());
   }
@@ -27,14 +31,14 @@ export class UserApplication extends BaseApplication<UserModel> {
       delete entity.roles;
     }
 
-    // if (entity.warehouses.length > 0) {
-    //   const warehouses = await this.WarehouseRepository.findByIds(
-    //     entity.warehouses as number[],
-    //   );
-    //   entity.warehouses = warehouses;
-    // } else {
-    //   delete entity.warehouses;
-    // }
+    if (entity.warehouses.length > 0) {
+      const warehouses = await this.WarehouseRepository.findByIds(
+        entity.warehouses as number[],
+      );
+      entity.warehouses = warehouses;
+    } else {
+      delete entity.warehouses;
+    }
 
     const result = await this.UserRepository.insert(entity);
     return new UserDTO().mapping(result);
@@ -53,14 +57,14 @@ export class UserApplication extends BaseApplication<UserModel> {
       delete entity.roles;
     }
 
-    // if (entity.warehouses.length > 0) {
-    //   const warehouses = await this.WarehouseRepository.findByIds(
-    //     entity.warehouses as number[],
-    //   );
-    //   entity.warehouses = warehouses;
-    // } else {
-    //   delete entity.warehouses;
-    // }
+    if (entity.warehouses.length > 0) {
+      const warehouses = await this.WarehouseRepository.findByIds(
+        entity.warehouses as number[],
+      );
+      entity.warehouses = warehouses;
+    } else {
+      delete entity.warehouses;
+    }
 
     const result = await this.UserRepository.update(entity, where, relations);
     return new UserDTO().mapping(result);

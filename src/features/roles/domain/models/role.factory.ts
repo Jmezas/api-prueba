@@ -15,6 +15,6 @@ export class RoleFactory {
     if (!name) {
       throw new Error('Role name is required');
     }
-    return new RoleModel(id, name, status);
+    return new RoleModel(id, name, menus, status);
   }
 }

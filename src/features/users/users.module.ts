@@ -7,9 +7,13 @@ import { UserApplication } from './application/user.application';
 import { UserInfrastructure } from './infrastructure/user.infrastructure';
 import { RoleEntity } from '../roles/domain/models/role.entity';
 import { RoleInfrastructure } from '../roles/infrastructure/role.infrastructure';
+import { WarehouseEntity } from '../warehouse/domain/models/warehouse.entity';
+import { WarehouseInfrastructure } from '../warehouse/infrastructure/warehouse.infrastructure';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserEntity, RoleEntity])],
+  imports: [
+    TypeOrmModule.forFeature([UserEntity, RoleEntity, WarehouseEntity]),
+  ],
   controllers: [UsersController],
   providers: [
     UsersService,
@@ -21,6 +25,10 @@ import { RoleInfrastructure } from '../roles/infrastructure/role.infrastructure'
     {
       provide: 'RoleRepository',
       useClass: RoleInfrastructure,
+    },
+    {
+      provide: 'WarehouseRepository',
+      useClass: WarehouseInfrastructure,
     },
   ],
 })

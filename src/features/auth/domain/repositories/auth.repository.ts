@@ -1,4 +1,4 @@
-import Result from '../../../shared/application/interfaces/result.interface';
+import Result from 'src/features/shared/application/interfaces/result.interface';
 import { AuthModel } from '../models/auth.model';
 import { TokensModel } from '../models/tokens.model';
 

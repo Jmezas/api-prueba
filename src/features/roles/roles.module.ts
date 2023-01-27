@@ -6,11 +6,11 @@ import { RoleEntity } from './domain/models/role.entity';
 import { RoleInfrastructure } from './infrastructure/role.infrastructure';
 import { BaseRepository } from '../shared/domain/repositories/base-repository';
 import { RoleApplication } from './application/role.application';
-// import { MenuEntity } from '../menu/domain/models/menu.entity';
-// import { MenuInfrastructure } from '../menu/infrastructure/menu.infrastructure';
+import { MenuEntity } from '../menu/domain/models/menu.entity';
+import { MenuInfrastructure } from '../menu/infrastructure/menu.infrastructure';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([RoleEntity])],
+  imports: [TypeOrmModule.forFeature([RoleEntity, MenuEntity])],
   controllers: [RolesController],
   providers: [
     RolesService,
@@ -18,6 +18,10 @@ import { RoleApplication } from './application/role.application';
     {
       provide: 'RoleRepository',
       useClass: RoleInfrastructure,
+    },
+    {
+      provide: 'MenuRepository',
+      useClass: MenuInfrastructure,
     },
   ],
 })

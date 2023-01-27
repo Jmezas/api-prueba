@@ -1,6 +1,6 @@
 import { IsEmail, IsNotEmpty } from 'class-validator';
 import { RoleEntity } from 'src/features/roles/domain/models/role.entity';
-
+import { WarehouseEntity } from 'src/features/warehouse/domain/models/warehouse.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -55,4 +55,8 @@ export class UserEntity {
   @ManyToMany((type) => RoleEntity, (role) => role.users)
   @JoinTable()
   roles: RoleEntity[];
+
+  @ManyToMany((type) => WarehouseEntity, (Warehouse) => Warehouse.users)
+  @JoinTable()
+  warehouses: WarehouseEntity[];
 }

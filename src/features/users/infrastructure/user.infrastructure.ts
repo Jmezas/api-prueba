@@ -1,9 +1,9 @@
 import { InjectRepository } from '@nestjs/typeorm';
-import { BaseInfrastructure } from '../../shared/infrastructure/base-infrastructure';
 import { UserEntity } from '../domain/models/user.entity';
 import { UserModel } from '../domain/models/user.model';
 import { UserRepository } from '../domain/repositories/user.repository';
 import { Repository } from 'typeorm';
+import { BaseInfrastructure } from 'src/features/shared/infrastructure/base-infrastructure';
 
 export class UserInfrastructure
   extends BaseInfrastructure<UserModel>

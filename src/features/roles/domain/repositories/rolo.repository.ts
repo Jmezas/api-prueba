@@ -1,4 +1,4 @@
-import { BaseRepository } from '../../../shared/domain/repositories/base-repository';
+import { BaseRepository } from 'src/features/shared/domain/repositories/base-repository';
 import { RoleEntity } from '../models/role.entity';
 import { RoleModel } from '../models/role.model';
 

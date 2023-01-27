@@ -1,4 +1,4 @@
-import { BaseRepository } from '../../../shared/domain/repositories/base-repository';
+import { BaseRepository } from 'src/features/shared/domain/repositories/base-repository';
 import { CategoryEntity } from '../models/category.entity';
 import { CategoryModel } from '../models/category.model';
 

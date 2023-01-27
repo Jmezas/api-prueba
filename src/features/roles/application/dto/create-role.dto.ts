@@ -1,5 +1,5 @@
-import { ApiProperty, ApiResponse } from '@nestjs/swagger';
 import { IsString } from 'class-validator';
+import { ApiProperty, ApiResponse } from '@nestjs/swagger';
 
 export class CreateRoleDto {
   @ApiProperty()

@@ -1,5 +1,12 @@
+import { MenuEntity } from 'src/features/menu/domain/models/menu.entity';
 import { UserEntity } from 'src/features/users/domain/models/user.entity';
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: 'role' })
 export class RoleEntity {
@@ -14,4 +21,8 @@ export class RoleEntity {
 
   @ManyToMany((type) => UserEntity, (user) => user.roles)
   users: UserEntity[];
+
+  @ManyToMany((type) => MenuEntity, (menu) => menu.roles)
+  @JoinTable()
+  menus: MenuEntity[] | number[] | string[];
 }

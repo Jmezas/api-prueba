@@ -7,12 +7,13 @@ import { AuthInfrastructure } from './infrastructure/auth.Infrastructure';
 import { BaseRepository } from '../shared/domain/repositories/base-repository';
 import { AuthApplication } from './application/auth.application';
 import { RoleEntity } from '../roles/domain/models/role.entity';
+import { WarehouseEntity } from '../warehouse/domain/models/warehouse.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './domain/models/jwt.strategy';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([UserEntity, RoleEntity]),
+    TypeOrmModule.forFeature([UserEntity, RoleEntity, WarehouseEntity]),
     JwtModule.register({
       secret: process.env.KEYWORD,
       signOptions: { expiresIn: process.env.TIMEOUT + 's' },

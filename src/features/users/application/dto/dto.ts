@@ -1,6 +1,6 @@
+import { DTOAbstract } from 'src/features/shared/application/interfaces/dtos/abstract.dto';
+import Result from 'src/features/shared/application/interfaces/result.interface';
 import { UserModel } from '../../domain/models/user.model';
-import Result from '../../../shared/application/interfaces/result.interface';
-import { DTOAbstract } from '../../../shared/application/interfaces/dtos/abstract.dto';
 import { PasswordService } from '../../domain/services/password.service';
 
 export class UserDTO extends DTOAbstract<UserModel> {

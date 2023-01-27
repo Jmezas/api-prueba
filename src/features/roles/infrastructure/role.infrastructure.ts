@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { BaseInfrastructure } from 'src/features/shared/infrastructure/base-infrastructure';
 import { In, Repository } from 'typeorm';
-import { BaseInfrastructure } from '../../../features/shared/infrastructure/base-infrastructure';
 import { RoleEntity } from '../domain/models/role.entity';
 import { RoleModel } from '../domain/models/role.model';
 import { RoleRepository } from '../domain/repositories/rolo.repository';
